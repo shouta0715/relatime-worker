@@ -1,21 +1,10 @@
-name = "-"
-compatibility_date = "2023-12-01"
+name = "durable-objects-counter"
+compatibility_date = "2024-05-01"
 
-# [vars]
-# MY_VAR = "my-variable"
+[[durable_objects.bindings]]
+name = "COUNTERS"
+class_name = "Counter"
 
-# [[kv_namespaces]]
-# binding = "MY_KV_NAMESPACE"
-# id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-
-# [[r2_buckets]]
-# binding = "MY_BUCKET"
-# bucket_name = "my-bucket"
-
-# [[d1_databases]]
-# binding = "DB"
-# database_name = "my-database"
-# database_id = ""
-
-# [ai]
-# binding = "AI"
+[[migrations]]
+tag = "v1" # Should be unique for each entry
+new_classes = ["Counter"]
