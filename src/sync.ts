@@ -1,10 +1,11 @@
+/* eslint-disable class-methods-use-this */
 import { DurableObject } from "cloudflare:workers";
 
-export class Counter extends DurableObject {
+export class WebMultiViewSync extends DurableObject {
   async getCounterValue() {
-    const value = (await this.ctx.storage.get("value")) || 0;
+    const value = await this.ctx.storage.get<number>("value");
 
-    return value;
+    return value || 0;
   }
 
   async increment(amount = 1) {
@@ -21,5 +22,9 @@ export class Counter extends DurableObject {
     await this.ctx.storage.put("value", value);
 
     return value;
+  }
+
+  async reset() {
+    await this.ctx.storage.delete("value");
   }
 }
